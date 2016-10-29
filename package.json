@@ -1,0 +1,39 @@
+{
+  "name": "zetta-ccu2-driver",
+  "version": "0.1.0",
+  "description": "Zetta driver for HomeMatic CCU2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/timonreinhard/zetta-ccu2-driver.git"
+  },
+  "author": "Timon Reinhard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/timonreinhard/zetta-ccu2-driver/issues"
+  },
+  "homepage": "https://github.com/timonreinhard/zetta-ccu2-driver",
+  "engines": {
+    "node": ">=4"
+  },
+  "dependencies": {
+    "zetta-device": "*",
+    "zetta-scout": "*"
+  },
+  "directories": {
+    "example": "example"
+  },
+  "keywords": [
+    "zetta",
+    "homematic",
+    "ccu2"
+  ],
+  "devDependencies": {
+    "eslint": "^3.9.0",
+    "eslint-plugin-node": "^2.1.3"
+  }
+}
