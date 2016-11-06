@@ -1,7 +1,8 @@
-var CcuClient = require('./lib/client')
-
 var util = require('util')
 var Scout = require('zetta-scout')
+
+var CcuClient = require('./lib/client')
+var ShutterContact = require('./devices/shutter-contact')
 
 var CcuScout = module.exports = function () {
   Scout.call(this)
@@ -11,16 +12,24 @@ util.inherits(CcuScout, Scout)
 CcuScout.prototype.init = function (next) {
   this._client = new CcuClient({
     ccuHostname: 'ccu2'
-  }).on('connect', this.search.bind(this))
+  })
+  this._client.on('connect', () => {
+    this._client.subscribe()
+    this.search()
+  })
   next()
 }
 
 CcuScout.prototype.search = function () {
   this._client.listDevices(function (err, result) {
     if (err) throw err
-    var tree = this._buildDeviceTree(result)
-    console.log(JSON.stringify(tree, 4, ' '))
-    // this.initDevice('wemo-color-light', WemoColorLight, endDevice, client)
+    this._buildDeviceTree(result).forEach(device => {
+      if (ShutterContact.TYPES.includes(device.TYPE)) {
+        this.initDevice('shutter-contact', ShutterContact, device, this._client)
+      } else {
+        console.log(device)
+      }
+    })
   }.bind(this))
 }
 
