@@ -1,0 +1,16 @@
+{
+  "name": "zetta-ccu-driver-example",
+  "version": "0.0.0",
+  "private": true,
+  "description": "an example for using the ccu driver",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "zetta": "*"
+  }
+}
