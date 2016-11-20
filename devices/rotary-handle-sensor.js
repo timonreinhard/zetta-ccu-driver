@@ -27,8 +27,8 @@ util.inherits(RotaryHandleSensor, Device)
 RotaryHandleSensor.TYPES = ['HM-Sec-RHS']
 RotaryHandleSensor.STATE = {
   0: 'closed',
-  1: 'open',
-  2: 'tilted'
+  1: 'tilted',
+  2: 'open'
 }
 
 RotaryHandleSensor.prototype.init = function (config) {
