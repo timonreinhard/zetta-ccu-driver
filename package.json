@@ -1,5 +1,5 @@
 {
-  "name": "zetta-ccu2-driver",
+  "name": "zetta-ccu-driver",
   "version": "0.1.0",
   "description": "Zetta driver for HomeMatic CCU2",
   "main": "index.js",
