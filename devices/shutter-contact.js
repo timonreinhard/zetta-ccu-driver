@@ -3,6 +3,8 @@ var Device = require('zetta-device')
 
 var ShutterContact = module.exports = function (device, client) {
   this.name = device.NAME
+  this.serialNumber = device.ADDRESS
+  this.model = device.TYPE
   this._client = client
   this._device = device
   this.state = ''
