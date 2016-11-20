@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/timonreinhard/zetta-ccu2-driver.git"
+    "url": "git://github.com/timonreinhard/zetta-ccu-driver.git"
   },
   "author": "Timon Reinhard",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/timonreinhard/zetta-ccu2-driver/issues"
+    "url": "https://github.com/timonreinhard/zetta-ccu-driver/issues"
   },
-  "homepage": "https://github.com/timonreinhard/zetta-ccu2-driver",
+  "homepage": "https://github.com/timonreinhard/zetta-ccu-driver",
   "engines": {
     "node": ">=4"
   },
