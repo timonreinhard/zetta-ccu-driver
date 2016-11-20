@@ -21,22 +21,27 @@ CcuScout.prototype.init = function (next) {
 }
 
 CcuScout.prototype.search = function () {
-  this._client.listDevices(function (err, result) {
+  var self = this
+  this._client.getRegaDeviceNames(function (err, deviceNames) {
     if (err) throw err
-    this._buildDeviceTree(result).forEach(device => {
-      if (ShutterContact.TYPES.includes(device.TYPE)) {
-        this.initDevice('shutter-contact', ShutterContact, device, this._client)
-      } else {
-        console.log(device)
-      }
+    self._client.listDevices(function (err, devices) {
+      if (err) throw err
+      self._buildDeviceTree(devices, deviceNames).forEach(device => {
+        if (ShutterContact.TYPES.includes(device.TYPE)) {
+          self.initDevice('shutter-contact', ShutterContact, device, this._client)
+        } else {
+          console.log(device)
+        }
+      })
     })
-  }.bind(this))
+  })
 }
 
-CcuScout.prototype._buildDeviceTree = function (devices) {
+CcuScout.prototype._buildDeviceTree = function (devices, deviceNames) {
   return devices
     .filter(device => !device.PARENT && device.CHILDREN)
     .map(device => {
+      device.NAME = deviceNames[device.ADDRESS]
       device.CHILDREN = device.CHILDREN.map(addr => {
         return devices.find(device => device.ADDRESS === addr)
       })

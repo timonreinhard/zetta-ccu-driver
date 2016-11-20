@@ -2,10 +2,21 @@ var util = require('util')
 var Device = require('zetta-device')
 
 var ShutterContact = module.exports = function (device, client) {
-  this.name = device.ADDRESS
-  this.state = ''
+  this.name = device.NAME
   this._client = client
   this._device = device
+  this.state = ''
+
+  const channel = this._device.CHILDREN.find(child =>
+    child.TYPE === 'SHUTTER_CONTACT' && child.PARAMSETS.includes('VALUES')
+  )
+  this._client.getValue(channel.ADDRESS, 'STATE', (err, res) => {
+    if (err) throw err
+    this.state = res ? 'open' : 'closed'
+  })
+
+  this._client.on('update', this._updateHandler.bind(this))
+
   Device.call(this)
 }
 util.inherits(ShutterContact, Device)
@@ -15,9 +26,9 @@ ShutterContact.TYPES = ['HM-Sec-SCo']
 ShutterContact.prototype.init = function (config) {
   config
     .type('shutter-contact')
+    .monitor('state')
     .state(this.state)
     .name(this.name)
-  this._client.on('update', this._updateHandler.bind(this))
 }
 
 ShutterContact.prototype._updateHandler = function (params) {
