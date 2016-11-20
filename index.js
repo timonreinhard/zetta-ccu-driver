@@ -10,13 +10,10 @@ var CcuScout = module.exports = function () {
 util.inherits(CcuScout, Scout)
 
 CcuScout.prototype.init = function (next) {
-  this._client = new CcuClient({
-    ccuHostname: 'ccu2'
-  })
-  this._client.on('connect', () => {
-    this._client.subscribe()
+  CcuClient.discover(function (client) {
+    this._client = client
     this.search()
-  })
+  }.bind(this))
   next()
 }
 

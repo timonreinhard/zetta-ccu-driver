@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "binrpc": "^1.0.0",
+    "node-ssdp": "^2.9.0",
     "zetta-device": "^0.21.0",
     "zetta-scout": "^0.7.0"
   },
