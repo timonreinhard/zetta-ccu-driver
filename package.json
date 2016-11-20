@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/timonreinhard/zetta-ccu-driver",
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "dependencies": {
     "binrpc": "^1.0.0",
